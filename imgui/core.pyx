@@ -597,6 +597,7 @@ cdef class _ImGuiContext(object):
 
         return _contexts[<uintptr_t>ptr]
 
+    @staticmethod
     def from_int_ptr(ptr_val):
         cdef void* ptr
         ptr = PyLong_AsVoidPtr(ptr_val)
