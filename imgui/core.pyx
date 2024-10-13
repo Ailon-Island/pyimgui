@@ -573,6 +573,10 @@ VIEWPORT_FLAGS_OWNED_BY_APP = enums.ImGuiViewportFlags_OwnedByApp               
 
 include "imgui/common.pyx"
 
+cdef extern from "Python.h":
+    void* PyLong_AsVoidPtr(object)
+    object PyLong_FromVoidPtr(void *p)
+
 _contexts = {}
 cdef class _ImGuiContext(object):
     cdef cimgui.ImGuiContext* _ptr
