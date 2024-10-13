@@ -593,6 +593,12 @@ cdef class _ImGuiContext(object):
 
         return _contexts[<uintptr_t>ptr]
 
+    def from_int_ptr(ptr_val):
+        cdef void* ptr
+        ptr = PyLong_AsVoidPtr(ptr_val)
+        ctx = _ImGuiContext.from_ptr(<cimgui.ImGuiContext*>ptr)
+        return ctx
+
     def __eq__(_ImGuiContext self, _ImGuiContext other):
         return other._ptr == self._ptr
 
