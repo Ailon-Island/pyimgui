@@ -12542,6 +12542,27 @@ def get_frame_height_with_spacing():
     """
     return cimgui.GetFrameHeightWithSpacing()
 
+def set_allocator_functions(
+        alloc_func_int_ptr,
+        free_func_int_ptr,
+        user_data_int_ptr
+    ):
+    """Set the memory allocation functions.
+    .. wraps::
+        void SetAllocatorFunctions(
+            ImGuiMemAllocFunc alloc_func,
+            ImGuiMemFreeFunc free_func,
+            void* user_data = NULL
+        )
+    """
+    cdef cimgui.ImGuiMemAllocFunc alloc_func
+    cdef cimgui.ImGuiMemFreeFunc free_func
+    cdef void* user_data
+    alloc_func = <cimgui.ImGuiMemAllocFunc>PyLong_AsVoidPtr(alloc_func_int_ptr)
+    free_func = <cimgui.ImGuiMemFreeFunc>PyLong_AsVoidPtr(free_func_int_ptr)
+    user_data = PyLong_AsVoidPtr(user_data_int_ptr)
+
+    cimgui.SetAllocatorFunctions(alloc_func, free_func, user_data)
 
 def create_context(_FontAtlas shared_font_atlas = None):
     """CreateContext

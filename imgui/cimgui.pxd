@@ -935,6 +935,14 @@ cdef extern from "imgui.h" namespace "ImGui":
     void SetCurrentContext(ImGuiContext* ctx) except +  # ✓
 
     # ====
+    # Allocator function setting 
+    void SetAllocatorFunctions(  # ✓
+            ImGuiMemAllocFunc alloc_func, 
+            ImGuiMemFreeFunc free_func, 
+            void* user_data
+    ) except +
+
+    # ====
     # Main
     ImGuiIO& GetIO() except +  # ✓
     ImGuiStyle& GetStyle() except +  # ✓
